@@ -7,6 +7,7 @@
 
 void sens_init( void ) {
 	DDRB &= ~(1<<PB0); // SL6 is left bumper
+	DDRB &= ~(1<<PB5); // START button
 	DDRC &= ~(1<<PC6); // SL4 is right bumper
 
 }
@@ -15,10 +16,10 @@ void sens_init( void ) {
 
 uint8_t sens_bumper_get( void ) {
 	if( PINB&(1<<PB0) ) {
-		return 0x01; // left bumper
+		return B_LEFT; // left bumper
 	}
 	else if( PINC&(1<<PC6) ) {
-		return 0x02; // right bumper
+		return B_RIGHT; // right bumper
 	}
 
 	return 0x00;
